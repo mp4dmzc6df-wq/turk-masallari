@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Türk Masalları Derlemesi</title>
+    <style>
+        :root {
+            --primary-color: #5c2c16;
+            --secondary-color: #f4e8d8;
+            --accent-color: #d97706;
+            --text-color: #2b2b2b;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .card p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Türk Masalları Derlemesi</h1>
+        <p>Geleneksel Türk masallarından seçmeler (8 Masal)</p>
+    </header>
+
+    <div class="controls">
+        <input type="text" id="searchInput" placeholder="Masal ara..." onkeyup="filterMasallar()">
+    </div>
+
+    <div class="grid" id="masalGrid">
+        <div class="card" data-title="keloğlan ve sihirli tas">
+            <h3>1. Keloğlan ve Sihirli Tas</h3>
+            <p>Annesinin zoruyla pazara giden Keloğlan'ın yolda bulduğu sihirli tas ile başına gelen maceralı olaylar.</p>
+        </div>
+        <div class="card" data-title="zümrüdü anka kuşu">
+            <h3>2. Zümrüdü Anka Kuşu</h3>
+            <p>Karanlıklar ülkesinde mahsur kalan padişah oğlunun, Zümrüdü Anka kuşu yardımıyla gün ışığına kavuşma hikayesi.</p>
+        </div>
+        <div class="card" data-title="şahmeran">
+            <h3>3. Şahmeran</h3>
+            <p>Yeraltının yılanlar padişahı Şahmeran'ın sırrını öğrenen Tarsuslu Cemas'ın efsanevi olayı.</p>
+        </div>
+        <div class="card" data-title="keloğlan ile dev">
+            <h3>4. Keloğlan ile Dev</h3>
+            <p>Köyün başına bela olan devleri zekasıyla alt eden Keloğlan'ın eğlenceli halk hikayesi.</p>
+        </div>
+        <div class="card" data-title="altın elma">
+            <h3>5. Altın Elma</h3>
+            <p>Padişahın üç oğlunun, ülkeye bereket getiren sihirli altın elmayı bulmak için çıktığı serüven.</p>
+        </div>
+        <div class="card" data-title="padişahın kızı ve derviş">
+            <h3>6. Padişahın Kızı ve Derviş</h3>
+            <p>Zorluklar karşısında sabretmeyi ve dervişin öğütleriyle hayatı göğüsleyen prensesin masalı.</p>
+        </div>
+        <div class="card" data-title="sihirli lamba">
+            <h3>7. Sihirli Lamba</h3>
+            <p>Anadolu topraklarında geçen, yoksul bir çobanın bulduğu sihirli lambanın hikayesi.</p>
+        </div>
+        <div class="card" data-title="uçan halı">
+            <h3>8. Uçan Halı</h3>
+            <p>Diyardan diyara seyahat eden yaşlı bir dokumacının sihirli halısıyla yaptığı yolculuklar.</p>
+        </div>
+    </div>
+
+    <script>
+        function filterMasallar() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getAttribute('data-title');
+                if (title.includes(input)) {
+                    cards[i].classList.remove('hidden');
+                } else {
+                    cards[i].classList.add('hidden');
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
