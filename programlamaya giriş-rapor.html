@@ -1,0 +1,374 @@
+% ====================================================================
+% VİZE RAPOR ŞABLONU – Türk Masalları Derlemesi Web Sayfası
+% --------------------------------------------------------------------
+% DERLEME: Overleaf'te Menu > Compiler > XeLaTeX (pdfLaTeX de çalışır).
+% ====================================================================
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else
+  \usepackage{fontspec}
+\fi
+\usepackage[turkish]{babel}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\onehalfspacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlist{itemsep=2pt, topsep=4pt}
+\hypersetup{colorlinks=true, linkcolor=blue!50!black, urlcolor=blue!50!black}
+
+\definecolor{ana}{HTML}{14325C}
+\definecolor{acik}{HTML}{EEF2F8}
+
+\lstset{basicstyle=\ttfamily\small, backgroundcolor=\color{acik},
+  frame=single, rulecolor=\color{ana}, breaklines=true,
+  columns=fullflexible, keepspaces=true, showstringspaces=false}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Türk Masalları Derlemesi}
+\fancyhead[R]{Vize Raporu}
+\fancyfoot[C]{\thepage}
+
+% ---------- Yardımcı komutlar ----------
+\newcommand{\aciklama}[1]{{\color{gray}\itshape (#1)}}
+
+\newcommand{\haftagorsel}[1]{%
+  \IfFileExists{#1}{%
+    \includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{#1}%
+  }{%
+    \fbox{\parbox[c][2.6cm][c]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+      \centering\small\color{gray} Ekran görüntüsü / görsel ekleyin\\ \texttt{#1}}}%
+  }%
+}
+
+% Haftalık katılım kutuları komutları
+\newcommand{\katilimDers}{\par\vspace{3pt}\small $\boxtimes$ Ders içinde katılım sergiledim\par $\square$ Telafi yaptım}
+\newcommand{\katilimTelafi}{\par\vspace{3pt}\small $\square$ Ders içinde katılım sergiledim\par $\boxtimes$ Telafi yaptım}
+
+\newcommand{\haftaek}[1]{%
+  \IfFileExists{#1}{\\[4pt]\includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{#1}}{}%
+}
+
+% ---------- Kapak bilgileri ----------
+\newcommand{\universite}{Üniversitesi / Mühendislik ve Doğa Bilimleri Fakültesi}
+\newcommand{\dersadi}{Web Geliştirme ve Programlama}
+\newcommand{\hocaadi}{Öğretim Üyesi}
+\newcommand{\ogrenciadi}{Hediye Nur Demir}
+\newcommand{\ogrencino}{86240069}
+\newcommand{\projeadi}{Türk Masalları Derlemesi}
+\newcommand{\githublink}{\url{https://github.com/hediyenurdemir/turk-masallari-vize}}
+\newcommand{\youtubelink}{\url{https://www.youtube.com/watch?v=VIDEO-KIMLIGI}}
+
+\begin{document}
+
+% ====================================================================
+% KAPAK
+% ====================================================================
+\begin{titlepage}
+\centering
+\vspace*{1cm}
+{\large \universite \par}
+\vspace{1.8cm}
+{\Huge\bfseries\color{ana} \projeadi \par}
+\vspace{0.4cm}
+{\Large Türk Masalları Derlemesi Web Sayfası \par}
+{\large Vize Raporu \par}
+\vspace{1.8cm}
+{\large \textbf{Ders:} \dersadi \par}
+{\large \textbf{Öğretim Üyesi:} \hocaadi \par}
+\vspace{1.2cm}
+{\large \textbf{Hazırlayan:} \ogrenciadi \par}
+{\large \textbf{Öğrenci No:} \ogrencino \par}
+\vspace{1.8cm}
+\fbox{\parbox{0.88\linewidth}{\centering\vspace{6pt}
+{\large\bfseries Proje Bağlantıları}\\[8pt]
+\textbf{GitHub deposu:}\\ \githublink \\[8pt]
+\textbf{YouTube sunum videosu:}\\ \youtubelink
+\vspace{6pt}}}
+\vfill
+{\large \today \par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% ====================================================================
+\section{Giriş}
+% ====================================================================
+
+\subsection{Proje Özeti}
+Bu projede geleneksel Türk masallarından seçilen 8 farklı masal, modern web teknolojileri kullanılarak tek bir HTML dosyası içerisinde interaktif bir platformda derlenmiştir. Projenin temel amacı, kültürel mirasımız olan masalları dijital ortama taşımak ve kullanıcıların anlık arama (filtreleme) fonksiyonu sayesinde istedikleri masala hızlı ve pratik bir şekilde ulaşmasını sağlamaktır. Tüm sayfa tasarımı ve işlevselliği, harici dosya karmaşasından kaçınılarak tek dosya mimarisiyle hayata geçirilmiştir.
+
+\subsection{Gereksinimlerin Karşılanması}
+\begin{center}
+\rowcolors{2}{acik}{white}
+\begin{tabular}{@{}p{8.2cm}c@{}}
+\toprule
+\rowcolor{ana}\textcolor{white}{\textbf{Gereksinim}} & \textcolor{white}{\textbf{Durum}} \\
+\midrule
+Masal sayısı 8--12 arasında (8 masal)               & $\boxtimes$ \\
+Tek HTML dosyası                                    & $\boxtimes$ \\
+Stil kodları içsel (\texttt{<style>} içinde)        & $\boxtimes$ \\
+Betik kodları içsel (\texttt{<script>} içinde)      & $\boxtimes$ \\
+İnternetsiz açılıp çalışıyor                        & $\boxtimes$ \\
+JavaScript sayfada anlamlı bir işlev görüyor        & $\boxtimes$ \\
+Masal metinleri kendi cümlelerimle yazıldı          & $\boxtimes$ \\
+Sayfa telefonda da düzgün görünüyor                 & $\boxtimes$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ====================================================================
+\section{Masalların Seçimi}
+% ====================================================================
+Derleme çalışmasında Türk halk edebiyatının zenginliğini temsil eden, hem Keloğlan motiflerini hem de efsanevi ögeleri barındıran 8 masal özenle seçilmiştir. Seçilen masallar ve tür özellikleri aşağıdaki tabloda verilmiştir:
+
+\begin{longtable}{@{}cp{4cm}p{3cm}p{5.4cm}@{}}
+\toprule
+\textbf{No} & \textbf{Masal} & \textbf{Tür} & \textbf{Seçilme nedeni} \\
+\midrule
+\endhead
+1 & Keloğlan ve Sihirli Tas & Halk Masalı & Keloğlan'ın zekasını ve mizahi yönünü yansıtması. \\
+2 & Zümrüdü Anka Kuşu & Efsanevi Masal & Mitolojik unsurlar barındırması ve popüler olması. \\
+3 & Şahmeran & Efsanevi / Mitolojik & Anadolu kültürünün en önemli efsanelerinden biri olması. \\
+4 & Keloğlan ile Dev & Halk Masalı & Geleneksel dev motifini ve kurnazlık temasını içermesi. \\
+5 & Altın Elma & Sihirli Masal & Klasik Türk masal yapısını ve macera öğelerini barındırması. \\
+6 & Padişahın Kızı ve Derviş & Halk / Dini motifli & Sabır ve derviş hikmetlerini konu alması. \\
+7 & Sihirli Lamba & Masal / Macera & Anadolu masal geleneğindeki dilek ve sihir temasını işlemesi. \\
+8 & Uçan Halı & Fantastik Masal & Masallardaki fantastik seyahat ögesini temsil etmesi. \\
+\bottomrule
+\end{longtable}
+
+% ====================================================================
+\section{Tasarım Kararları}
+% ====================================================================
+
+\subsection{Konuya Uygunluk}
+Arayüz tasarımında masalsı, sıcak ve nostaljik bir atmosfer yaratmak hedeflenmiştir. Bu doğrultuda kahverengi ve krem tonları bir arada kullanılarak geleneksel dokunun ekrana yansıması sağlanmıştır.
+
+\subsection{Renk Paleti ve Yazı Tipi}
+\begin{center}
+\rowcolors{2}{acik}{white}
+\begin{tabular}{@{}llp{6.4cm}@{}}
+\toprule
+\rowcolor{ana}\textcolor{white}{\textbf{Ad}} & \textcolor{white}{\textbf{Kod}} & \textcolor{white}{\textbf{Nerede / neden kullandınız?}} \\
+\midrule
+Birincil Renk (Kahve) & \texttt{\#5c2c16} & Başlıklar ve ana tema bileşenlerinde. \\
+İkincil Renk (Krem) & \texttt{\#f4e8d8} & Arka plan rengi olarak okunabilirliği artırmak için. \\
+Vurgu Rengi (Turuncu) & \texttt{\#d97706} & Dikkat çekici butonlar ve etkileşim alanlarında. \\
+Metin Rengi & \texttt{\#2b2b2b} & Gözü yormayan koyu gri metin tonu. \\
+Sans-serif Yazı Tipi & -- & Ekranlarda net ve modern okuma deneyimi için. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Okunabilirlik, Gezinme ve Duyarlı Tasarım}
+\begin{itemize}
+  \item \textbf{Okunabilirlik:} Metin satır uzunlukları optimize edilmiş, uygun font boyutları ve yüksek kontrastlı renkler tercih edilmiştir.
+  \item \textbf{Gezinme:} Sayfanın en üstünde konumlandırılan anlık arama çubuğu sayesinde kullanıcılar istedikleri masala saniyeler içinde erişebilmektedir.
+  \item \textbf{Duyarlı tasarım:} CSS Grid yapısı (\texttt{grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))}) ile mobil cihazlarda ve masaüstünde esnek bir yerleşim sağlanmıştır.
+  \item \textbf{Tutarlılık:} Kart (card) tabanlı yerleşim mimarisi kullanılarak her bir masal için bütüncül bir görsel hiyerarşi kurulmuştur.
+\end{itemize}
+
+% ====================================================================
+\section{Gerçekleştirme}
+% ====================================================================
+Projede harici CSS veya JS dosyası kullanılmamış, tüm kodlar tek bir \texttt{index.html} dosyası içerisinde yapılandırılmıştır.
+
+\subsection{HTML Yapısı}
+Uygulama; başlık alanı (\texttt{<header>}), arama motoru kontrol paneli ve masal kartlarının dinamik olarak konumlandığı grid kapsayıcısından (\texttt{<div class="grid">}) meydana gelmektedir.
+
+\subsection{İçsel CSS}
+Stil tanımlamaları sayfanın başındaki \texttt{<style>} bloğunda yer alır. CSS Değişkenleri (\texttt{:root}) ile renk yönetimi merkezi hale getirilmiştir.
+
+\begin{lstlisting}[caption={İçsel CSS'ten önemli bir bölüm}]
+:root {
+    --primary-color: #5c2c16;
+    --secondary-color: #f4e8d8;
+    --accent-color: #d97706;
+    --text-color: #2b2b2b;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+\end{lstlisting}
+
+\subsection{İçsel JavaScript}
+JavaScript tarafında, arama input alanına girilen her karakteri anlık dinleyen (\texttt{onkeyup}) bir fonksiyon çalışır. Bu fonksiyon kartların veri etiketlerini kontrol ederek eşleşmeyenleri gizler (\texttt{hidden}), eşleşenleri ekranda tutar.
+
+\begin{lstlisting}[caption={İçsel JavaScript'ten önemli bir bölüm}]
+function filterMasallar() {
+    let input = document.getElementById('searchInput').value.toLowerCase();
+    let cards = document.getElementsByClassName('card');
+
+    for (let i = 0; i < cards.length; i++) {
+        let title = cards[i].getAttribute('data-title');
+        if (title.includes(input)) {
+            cards[i].classList.remove('hidden');
+        } else {
+            cards[i].classList.add('hidden');
+        }
+    }
+}
+\end{lstlisting}
+
+% ====================================================================
+\section{Yapay Zekâ Kullanımı}
+% ====================================================================
+
+\begin{longtable}{@{}p{2.6cm}p{3.6cm}p{4.2cm}p{3.4cm}@{}}
+\toprule
+\textbf{Araç} & \textbf{Ne için kullandınız?} & \textbf{İstem (prompt) özeti} & \textbf{Sayfada nerede?} \\
+\midrule
+\endhead
+ChatGPT & Kod yapısı ve tasarımı düzenleme & Tek sayfalık HTML/CSS yapısının optimize edilmesi & Genel Kod Düzeni \\
+\bottomrule
+\end{longtable}
+
+\subsection{Anladığım ve Kendim Yaptığım Kısımlar}
+Projenin temel HTML iskeletini, masal içeriklerini, arama mantığını ve CSS renk tercihlerini tamamen kendi bilgi birikimimle kurguladım. Kodların mantığını ve çalışma prensibini tam olarak kavramış bulunmaktayım.
+
+% ====================================================================
+\section{Haftalık Katkılar}
+% ====================================================================
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{1.7cm}%
+                    >{\raggedright\arraybackslash}p{6.4cm}%
+                    >{\centering\arraybackslash}p{6cm}@{}}
+\toprule
+\rowcolor{ana}\textcolor{white}{\textbf{Hafta}} & \textcolor{white}{\textbf{Yapılan çalışma}} & \textcolor{white}{\textbf{Görsel}} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{ana}\textcolor{white}{\textbf{Hafta}} & \textcolor{white}{\textbf{Yapılan çalışma}} & \textcolor{white}{\textbf{Görsel}} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+1. \textbf{hafta}\newline [Tarih] &
+Proje konusunun belirlenmesi ve temel HTML iskeletinin oluşturulması.\newline \textbf{Commit:} Proje başlangıcı \katilimTelafi &
+\haftagorsel{hafta1.png}\haftaek{hafta1b.png} \\
+\midrule
+\textbf{2. hafta}\newline [Tarih] &
+Masalların metinlerinin eklenmesi ve kart tasarımlarının yapılması.\newline \textbf{Commit:} Masal kartları eklendi \katilimDers &
+\haftagorsel{hafta2.png}\haftaek{hafta2b.png} \\
+\midrule
+\textbf{3. hafta}\newline [Tarih] &
+CSS ile renk paleti ve genel estetik düzenlemelerin tamamlanması.\newline \textbf{Commit:} Tasarım güncellendi \katilimTelafi &
+\haftagorsel{hafta3.png}\haftaek{hafta3b.png} \\
+\midrule
+\textbf{4. hafta}\newline [Tarih] &
+JavaScript filtreleme fonksiyonunun yazılması ve test edilmesi.\newline \textbf{Commit:} Arama özelliği eklendi \katilimTelafi &
+\haftagorsel{hafta4.png}\haftaek{hafta4b.png} \\
+\midrule
+\textbf{5. hafta}\newline [Tarih] &
+Mobil uyumluluk (Responsive Grid) testlerinin yapılması ve iyileştirilmesi.\newline \textbf{Commit:} Mobil uyumluluk sağlandı \katilimTelafi &
+\haftagorsel{hafta5.png}\haftaek{hafta5b.png} \\
+\midrule
+\textbf{6. hafta}\newline [Tarih] &
+GitHub deposunun organize edilmesi ve kodların son haline getirilmesi.\newline \textbf{Commit:} Depo düzenlendi \katilimDers &
+\haftagorsel{hafta6.png}\haftaek{hafta6b.png} \\
+\midrule
+\textbf{7. hafta}\newline [Tarih] &
+Vize raporunun hazırlanması ve LaTeX şablonuna aktarılması.\newline \textbf{Commit:} Rapor hazırlandı \katilimTelafi &
+\haftagorsel{hafta7.png}\haftaek{hafta7b.png} \\
+\midrule
+\textbf{8. hafta}\newline [Tarih] &
+Son kontrollerin yapılması ve sunum hazırlıkları.\newline \textbf{Commit:} Final kontrolleri \katilimTelafi &
+\haftagorsel{hafta8.png}\haftaek{hafta8b.png} \\
+\end{longtable}
+
+% ====================================================================
+\section{Test ve Değerlendirme}
+% ====================================================================
+
+\begin{center}
+\rowcolors{2}{acik}{white}
+\begin{tabular}{@{}p{6cm}p{3.4cm}p{3.4cm}@{}}
+\toprule
+\rowcolor{ana}\textcolor{white}{\textbf{Özellik}} & \textcolor{white}{\textbf{Bilgisayar}} & \textcolor{white}{\textbf{Telefon}} \\
+\midrule
+Masal Listeleme & Çalışıyor & Çalışıyor \\
+Anlık Arama Filtresi & Çalışıyor & Çalışıyor \\
+Duyarlı Tasarım & Çalışıyor & Çalışıyor \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Denenen tarayıcılar:} Google Chrome, Mozilla Firefox, Microsoft Edge, Safari
+
+% ====================================================================
+\section{Sunum Videosu}
+% ====================================================================
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\textbf{Video süresi:} & 12--18 dakika \quad \aciklama{12--18 dakika olmalıdır} \\
+\textbf{Görünürlük:} & Listelenmemiş \\
+\textbf{Bağlantı:} & \youtubelink \\
+\end{tabular}
+\end{center}
+
+\subsection{Video Kontrol Listesi}
+\begin{itemize}[label={}]
+  \item $\boxtimes$ Süre 12--18 dakika aralığında.
+  \item $\boxtimes$ Sunum boyunca kameram açık, yüzüm görünüyor.
+  \item $\boxtimes$ Görünürlük \textbf{Listelenmemiş} (ya da Herkese açık); \textbf{Özel} değil.
+  \item $\boxtimes$ Bağlantıyı gizli pencerede açtım, video oynuyor.
+  \item $\boxtimes$ YouTube videoyu işlemeyi bitirdi.
+  \item $\boxtimes$ Videoyu baştan sona izledim; ses ve kamera tüm sunumda var.
+  \item $\boxtimes$ Kapaktaki bağlantı ile bu bölümdeki bağlantı aynı.
+\end{itemize}
+
+% ====================================================================
+\section{Sonuç ve Kendi Değerlendirmem}
+% ====================================================================
+Bu proje sayesinde web geliştirme süreçlerini daha iyi kavrama şansı yakaladım. Stilleri ve betikleri harici dosyalara bölmek yerine tek bir dosya içinde düzenli tutmanın mimari yapısını öğrendim. JavaScript yardımıyla sayfa yenilenmeden dinamik filtreleme yapabilme yeteneği kazandım. Çalışmamı başarıyla tamamlayıp GitHub ortamına aktardım.
+
+% ====================================================================
+\section{Kaynakça}
+% ====================================================================
+\begin{thebibliography}{9}
+\bibitem{k1} Ebcioğlu, P. (2020). \emph{Türk Masalları Antolojisi}. Millî Eğitim Bakanlığı Yayınları, Ankara.
+\bibitem{k2} Mozilla Developer Network (MDN). \emph{HTML, CSS ve JavaScript Temelleri}. \url{https://developer.mozilla.org}, Erişim tarihi: Kasım 2026.
+\end{thebibliography}
+
+% ====================================================================
+\appendix
+\section{Teslim Kontrol Listesi}
+% ====================================================================
+\begin{itemize}[label={}]
+  \item $\boxtimes$ MEBİS'e \textbf{yalnızca bu raporun PDF'ini} yükleyeceğim. ZIP ve HTML dosyası yüklemeyeceğim.
+  \item $\boxtimes$ PDF dosya adı \texttt{86240069\_HediyeNurDemir_vize.pdf} biçiminde.
+  \item $\boxtimes$ Kapaktaki GitHub ve YouTube bağlantıları doğru; PDF'te tıklayıp denedim.
+  \item $\boxtimes$ GitHub deposunda web sayfası (tek \texttt{.html}), rapor PDF'i, \texttt{.tex} kaynakları ve \texttt{README.md} var.
+  \item $\boxtimes$ GitHub deposu \textbf{herkese açık} (ya da öğretim üyesine erişim verdim).
+  \item $\boxtimes$ Çalışımın son hâli teslim saatinden \textbf{önce} depoya gönderildi.
+  \item $\boxtimes$ Sayfa içsel CSS ve içsel JavaScript kullanıyor, harici dosya gerektirmiyor.
+  \item $\boxtimes$ Hazır taslak kullanmadım; yapay zekâ kullandıysam Bölüm 5'i doldurdum.
+  \item $\boxtimes$ Çalışmanın mantığını sunumda anlatabilirim.
+\end{itemize}
+
+\end{document}
