@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>main</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<div class="titlepage">
+<p>Üniversitesi / Mühendislik ve Doğa Bilimleri Fakültesi</p>
+<p><strong>Türk Masalları Derlemesi</strong></p>
+<p>Türk Masalları Derlemesi Web Sayfası</p>
+<p>Vize Raporu</p>
+<p><strong>Ders:</strong> Web Geliştirme ve Programlama</p>
+<p><strong>Öğretim Üyesi:</strong> Öğretim Üyesi</p>
+<p><strong>Hazırlayan:</strong> Hediye Nur Demir</p>
+<p><strong>Öğrenci No:</strong> 86240069</p>
+<p>2026-11-05</p>
+</div>
+<h1 id="giriş">Giriş</h1>
+<h2 id="proje-özeti">Proje Özeti</h2>
+<p>Bu projede geleneksel Türk masallarından seçilen 8 farklı masal,
+modern web teknolojileri kullanılarak tek bir HTML dosyası içerisinde
+interaktif bir platformda derlenmiştir. Projenin temel amacı, kültürel
+mirasımız olan masalları dijital ortama taşımak ve kullanıcıların anlık
+arama (filtreleme) fonksiyonu sayesinde istedikleri masala hızlı ve
+pratik bir şekilde ulaşmasını sağlamaktır. Tüm sayfa tasarımı ve
+işlevselliği, harici dosya karmaşasından kaçınılarak tek dosya
+mimarisiyle hayata geçirilmiştir.</p>
+<h2 id="gereksinimlerin-karşılanması">Gereksinimlerin Karşılanması</h2>
+<div class="center">
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><span
+style="color: white"><strong>Gereksinim</strong></span></th>
+<th style="text-align: center;"><span
+style="color: white"><strong>Durum</strong></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Masal sayısı 8–12 arasında (8 masal)</td>
+<td
+style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math></td>
+</tr>
+<tr>
+<td style="text-align: left;">Tek HTML dosyası</td>
+<td
+style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math></td>
+</tr>
+<tr>
+<td style="text-align: left;">Stil kodları içsel
+(<code>&lt;style&gt;</code> içinde)</td>
+<td
+style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math></td>
+</tr>
+<tr>
+<td style="text-align: left;">Betik kodları içsel
+(<code>&lt;script&gt;</code> içinde)</td>
+<td
+style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math></td>
+</tr>
+<tr>
+<td style="text-align: left;">İnternetsiz açılıp çalışıyor</td>
+<td
+style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math></td>
+</tr>
+<tr>
+<td style="text-align: left;">JavaScript sayfada anlamlı bir işlev
+görüyor</td>
+<td
+style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math></td>
+</tr>
+<tr>
+<td style="text-align: left;">Masal metinleri kendi cümlelerimle
+yazıldı</td>
+<td
+style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math></td>
+</tr>
+<tr>
+<td style="text-align: left;">Sayfa telefonda da düzgün görünüyor</td>
+<td
+style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="masalların-seçimi">Masalların Seçimi</h1>
+<p>Derleme çalışmasında Türk halk edebiyatının zenginliğini temsil eden,
+hem Keloğlan motiflerini hem de efsanevi ögeleri barındıran 8 masal
+özenle seçilmiştir. Seçilen masallar ve tür özellikleri aşağıdaki
+tabloda verilmiştir:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>No</strong></th>
+<th style="text-align: left;"><strong>Masal</strong></th>
+<th style="text-align: left;"><strong>Tür</strong></th>
+<th style="text-align: left;"><strong>Seçilme nedeni</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Keloğlan ve Sihirli Tas</td>
+<td style="text-align: left;">Halk Masalı</td>
+<td style="text-align: left;">Keloğlan’ın zekasını ve mizahi yönünü
+yansıtması.</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Zümrüdü Anka Kuşu</td>
+<td style="text-align: left;">Efsanevi Masal</td>
+<td style="text-align: left;">Mitolojik unsurlar barındırması ve popüler
+olması.</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Şahmeran</td>
+<td style="text-align: left;">Efsanevi / Mitolojik</td>
+<td style="text-align: left;">Anadolu kültürünün en önemli
+efsanelerinden biri olması.</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Keloğlan ile Dev</td>
+<td style="text-align: left;">Halk Masalı</td>
+<td style="text-align: left;">Geleneksel dev motifini ve kurnazlık
+temasını içermesi.</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Altın Elma</td>
+<td style="text-align: left;">Sihirli Masal</td>
+<td style="text-align: left;">Klasik Türk masal yapısını ve macera
+öğelerini barındırması.</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">Padişahın Kızı ve Derviş</td>
+<td style="text-align: left;">Halk / Dini motifli</td>
+<td style="text-align: left;">Sabır ve derviş hikmetlerini konu
+alması.</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;">Sihirli Lamba</td>
+<td style="text-align: left;">Masal / Macera</td>
+<td style="text-align: left;">Anadolu masal geleneğindeki dilek ve sihir
+temasını işlemesi.</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;">Uçan Halı</td>
+<td style="text-align: left;">Fantastik Masal</td>
+<td style="text-align: left;">Masallardaki fantastik seyahat ögesini
+temsil etmesi.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="tasarım-kararları">Tasarım Kararları</h1>
+<h2 id="konuya-uygunluk">Konuya Uygunluk</h2>
+<p>Arayüz tasarımında masalsı, sıcak ve nostaljik bir atmosfer yaratmak
+hedeflenmiştir. Bu doğrultuda kahverengi ve krem tonları bir arada
+kullanılarak geleneksel dokunun ekrana yansıması sağlanmıştır.</p>
+<h2 id="renk-paleti-ve-yazı-tipi">Renk Paleti ve Yazı Tipi</h2>
+<div class="center">
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><span
+style="color: white"><strong>Ad</strong></span></th>
+<th style="text-align: left;"><span
+style="color: white"><strong>Kod</strong></span></th>
+<th style="text-align: left;"><span style="color: white"><strong>Nerede
+/ neden kullandınız?</strong></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Birincil Renk (Kahve)</td>
+<td style="text-align: left;"><code>#5c2c16</code></td>
+<td style="text-align: left;">Başlıklar ve ana tema bileşenlerinde.</td>
+</tr>
+<tr>
+<td style="text-align: left;">İkincil Renk (Krem)</td>
+<td style="text-align: left;"><code>#f4e8d8</code></td>
+<td style="text-align: left;">Arka plan rengi olarak okunabilirliği
+artırmak için.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Vurgu Rengi (Turuncu)</td>
+<td style="text-align: left;"><code>#d97706</code></td>
+<td style="text-align: left;">Dikkat çekici butonlar ve etkileşim
+alanlarında.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Metin Rengi</td>
+<td style="text-align: left;"><code>#2b2b2b</code></td>
+<td style="text-align: left;">Gözü yormayan koyu gri metin tonu.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sans-serif Yazı Tipi</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Ekranlarda net ve modern okuma deneyimi
+için.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="okunabilirlik-gezinme-ve-duyarlı-tasarım">Okunabilirlik, Gezinme
+ve Duyarlı Tasarım</h2>
+<ul>
+<li><p><strong>Okunabilirlik:</strong> Metin satır uzunlukları optimize
+edilmiş, uygun font boyutları ve yüksek kontrastlı renkler tercih
+edilmiştir.</p></li>
+<li><p><strong>Gezinme:</strong> Sayfanın en üstünde konumlandırılan
+anlık arama çubuğu sayesinde kullanıcılar istedikleri masala saniyeler
+içinde erişebilmektedir.</p></li>
+<li><p><strong>Duyarlı tasarım:</strong> CSS Grid yapısı
+(<code>grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))</code>)
+ile mobil cihazlarda ve masaüstünde esnek bir yerleşim
+sağlanmıştır.</p></li>
+<li><p><strong>Tutarlılık:</strong> Kart (card) tabanlı yerleşim
+mimarisi kullanılarak her bir masal için bütüncül bir görsel hiyerarşi
+kurulmuştur.</p></li>
+</ul>
+<h1 id="gerçekleştirme">Gerçekleştirme</h1>
+<p>Projede harici CSS veya JS dosyası kullanılmamış, tüm kodlar tek bir
+<code>index.html</code> dosyası içerisinde yapılandırılmıştır.</p>
+<h2 id="html-yapısı">HTML Yapısı</h2>
+<p>Uygulama; başlık alanı (<code>&lt;header&gt;</code>), arama motoru
+kontrol paneli ve masal kartlarının dinamik olarak konumlandığı grid
+kapsayıcısından (<code>&lt;div class="grid"&gt;</code>) meydana
+gelmektedir.</p>
+<h2 id="içsel-css">İçsel CSS</h2>
+<p>Stil tanımlamaları sayfanın başındaki <code>&lt;style&gt;</code>
+bloğunda yer alır. CSS Değişkenleri (<code>:root</code>) ile renk
+yönetimi merkezi hale getirilmiştir.</p>
+<pre data-caption="İçsel CSS&#39;ten önemli bir bölüm"><code>:root {
+    --primary-color: #5c2c16;
+    --secondary-color: #f4e8d8;
+    --accent-color: #d97706;
+    --text-color: #2b2b2b;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}</code></pre>
+<h2 id="içsel-javascript">İçsel JavaScript</h2>
+<p>JavaScript tarafında, arama input alanına girilen her karakteri anlık
+dinleyen (<code>onkeyup</code>) bir fonksiyon çalışır. Bu fonksiyon
+kartların veri etiketlerini kontrol ederek eşleşmeyenleri gizler
+(<code>hidden</code>), eşleşenleri ekranda tutar.</p>
+<pre data-caption="İçsel JavaScript&#39;ten önemli bir bölüm"><code>function filterMasallar() {
+    let input = document.getElementById(&#39;searchInput&#39;).value.toLowerCase();
+    let cards = document.getElementsByClassName(&#39;card&#39;);
+
+    for (let i = 0; i &lt; cards.length; i++) {
+        let title = cards[i].getAttribute(&#39;data-title&#39;);
+        if (title.includes(input)) {
+            cards[i].classList.remove(&#39;hidden&#39;);
+        } else {
+            cards[i].classList.add(&#39;hidden&#39;);
+        }
+    }
+}</code></pre>
+<h1 id="yapay-zekâ-kullanımı">Yapay Zekâ Kullanımı</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Araç</strong></th>
+<th style="text-align: left;"><strong>Ne için kullandınız?</strong></th>
+<th style="text-align: left;"><strong>İstem (prompt) özeti</strong></th>
+<th style="text-align: left;"><strong>Sayfada nerede?</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">ChatGPT</td>
+<td style="text-align: left;">Kod yapısı ve tasarımı düzenleme</td>
+<td style="text-align: left;">Tek sayfalık HTML/CSS yapısının optimize
+edilmesi</td>
+<td style="text-align: left;">Genel Kod Düzeni</td>
+</tr>
+</tbody>
+</table>
+<h2 id="anladığım-ve-kendim-yaptığım-kısımlar">Anladığım ve Kendim
+Yaptığım Kısımlar</h2>
+<p>Projenin temel HTML iskeletini, masal içeriklerini, arama mantığını
+ve CSS renk tercihlerini tamamen kendi bilgi birikimimle kurguladım.
+Kodların mantığını ve çalışma prensibini tam olarak kavramış
+bulunmaktayım.</p>
+<h1 id="haftalık-katkılar">Haftalık Katkılar</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><span
+style="color: white"><strong>Hafta</strong></span></th>
+<th style="text-align: left;"><span style="color: white"><strong>Yapılan
+çalışma</strong></span></th>
+<th style="text-align: left;"><span
+style="color: white"><strong>Görsel</strong></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span
+style="color: white"><strong>Hafta</strong></span></td>
+<td style="text-align: left;"><span style="color: white"><strong>Yapılan
+çalışma</strong></span></td>
+<td style="text-align: left;"><span
+style="color: white"><strong>Görsel</strong></span></td>
+</tr>
+<tr>
+<td style="text-align: left;">1. <strong>hafta</strong><br />
+[Tarih]</td>
+<td style="text-align: left;"><p>Proje konusunun belirlenmesi ve temel
+HTML iskeletinin oluşturulması.<br />
+<strong>Commit:</strong> Proje başlangıcı</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math>
+Ders içinde katılım sergiledim</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Telafi yaptım</p></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="image placeholder"
+data-original-image-src="hafta1b.png" data-original-image-title=""
+width="\linewidth" height="4.2cm">image</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2. hafta</strong><br />
+[Tarih]</td>
+<td style="text-align: left;"><p>Masalların metinlerinin eklenmesi ve
+kart tasarımlarının yapılması.<br />
+<strong>Commit:</strong> Masal kartları eklendi</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Ders içinde katılım sergiledim</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math>
+Telafi yaptım</p></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="image placeholder"
+data-original-image-src="hafta2b.png" data-original-image-title=""
+width="\linewidth" height="4.2cm">image</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3. hafta</strong><br />
+[Tarih]</td>
+<td style="text-align: left;"><p>CSS ile renk paleti ve genel estetik
+düzenlemelerin tamamlanması.<br />
+<strong>Commit:</strong> Tasarım güncellendi</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math>
+Ders içinde katılım sergiledim</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Telafi yaptım</p></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="image placeholder"
+data-original-image-src="hafta3b.png" data-original-image-title=""
+width="\linewidth" height="4.2cm">image</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>4. hafta</strong><br />
+[Tarih]</td>
+<td style="text-align: left;"><p>JavaScript filtreleme fonksiyonunun
+yazılması ve test edilmesi.<br />
+<strong>Commit:</strong> Arama özelliği eklendi</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math>
+Ders içinde katılım sergiledim</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Telafi yaptım</p></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="image placeholder"
+data-original-image-src="hafta4b.png" data-original-image-title=""
+width="\linewidth" height="4.2cm">image</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5. hafta</strong><br />
+[Tarih]</td>
+<td style="text-align: left;"><p>Mobil uyumluluk (Responsive Grid)
+testlerinin yapılması ve iyileştirilmesi.<br />
+<strong>Commit:</strong> Mobil uyumluluk sağlandı</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math>
+Ders içinde katılım sergiledim</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Telafi yaptım</p></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="image placeholder"
+data-original-image-src="hafta5b.png" data-original-image-title=""
+width="\linewidth" height="4.2cm">image</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>6. hafta</strong><br />
+[Tarih]</td>
+<td style="text-align: left;"><p>GitHub deposunun organize edilmesi ve
+kodların son haline getirilmesi.<br />
+<strong>Commit:</strong> Depo düzenlendi</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Ders içinde katılım sergiledim</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math>
+Telafi yaptım</p></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="image placeholder"
+data-original-image-src="hafta6b.png" data-original-image-title=""
+width="\linewidth" height="4.2cm">image</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>7. hafta</strong><br />
+[Tarih]</td>
+<td style="text-align: left;"><p>Vize raporunun hazırlanması ve LaTeX
+şablonuna aktarılması.<br />
+<strong>Commit:</strong> Rapor hazırlandı</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math>
+Ders içinde katılım sergiledim</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Telafi yaptım</p></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="image placeholder"
+data-original-image-src="hafta7b.png" data-original-image-title=""
+width="\linewidth" height="4.2cm">image</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>8. hafta</strong><br />
+[Tarih]</td>
+<td style="text-align: left;"><p>Son kontrollerin yapılması ve sunum
+hazırlıkları.<br />
+<strong>Commit:</strong> Final kontrolleri</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>▫</mi><annotation encoding="application/x-tex">\square</annotation></semantics></math>
+Ders içinde katılım sergiledim</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Telafi yaptım</p></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="image placeholder"
+data-original-image-src="hafta8b.png" data-original-image-title=""
+width="\linewidth" height="4.2cm">image</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h1 id="test-ve-değerlendirme">Test ve Değerlendirme</h1>
+<div class="center">
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><span
+style="color: white"><strong>Özellik</strong></span></th>
+<th style="text-align: left;"><span
+style="color: white"><strong>Bilgisayar</strong></span></th>
+<th style="text-align: left;"><span
+style="color: white"><strong>Telefon</strong></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Masal Listeleme</td>
+<td style="text-align: left;">Çalışıyor</td>
+<td style="text-align: left;">Çalışıyor</td>
+</tr>
+<tr>
+<td style="text-align: left;">Anlık Arama Filtresi</td>
+<td style="text-align: left;">Çalışıyor</td>
+<td style="text-align: left;">Çalışıyor</td>
+</tr>
+<tr>
+<td style="text-align: left;">Duyarlı Tasarım</td>
+<td style="text-align: left;">Çalışıyor</td>
+<td style="text-align: left;">Çalışıyor</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Denenen tarayıcılar:</strong> Google Chrome, Mozilla Firefox,
+Microsoft Edge, Safari</p>
+<h1 id="sunum-videosu">Sunum Videosu</h1>
+<div class="center">
+<table>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Video süresi:</strong></td>
+<td style="text-align: left;">12–18 dakika</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Görünürlük:</strong></td>
+<td style="text-align: left;">Listelenmemiş</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bağlantı:</strong></td>
+<td style="text-align: left;"><a
+href="https://www.youtube.com/watch?v=VIDEO-KIMLIGI"
+class="uri">https://www.youtube.com/watch?v=VIDEO-KIMLIGI</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="video-kontrol-listesi">Video Kontrol Listesi</h2>
+<ul>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Süre 12–18 dakika aralığında.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Sunum boyunca kameram açık, yüzüm görünüyor.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Görünürlük <strong>Listelenmemiş</strong> (ya da Herkese açık);
+<strong>Özel</strong> değil.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Bağlantıyı gizli pencerede açtım, video oynuyor.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+YouTube videoyu işlemeyi bitirdi.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Videoyu baştan sona izledim; ses ve kamera tüm sunumda var.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Kapaktaki bağlantı ile bu bölümdeki bağlantı aynı.</p></li>
+</ul>
+<h1 id="sonuç-ve-kendi-değerlendirmem">Sonuç ve Kendi
+Değerlendirmem</h1>
+<p>Bu proje sayesinde web geliştirme süreçlerini daha iyi kavrama şansı
+yakaladım. Stilleri ve betikleri harici dosyalara bölmek yerine tek bir
+dosya içinde düzenli tutmanın mimari yapısını öğrendim. JavaScript
+yardımıyla sayfa yenilenmeden dinamik filtreleme yapabilme yeteneği
+kazandım. Çalışmamı başarıyla tamamlayıp GitHub ortamına aktardım.</p>
+<h1 id="kaynakça">Kaynakça</h1>
+<div class="thebibliography">
+<p><span>9</span> Ebcioğlu, P. (2020). <em>Türk Masalları
+Antolojisi</em>. Millî Eğitim Bakanlığı Yayınları, Ankara. Mozilla
+Developer Network (MDN). <em>HTML, CSS ve JavaScript Temelleri</em>. <a
+href="https://developer.mozilla.org"
+class="uri">https://developer.mozilla.org</a>, Erişim tarihi: Kasım
+2026.</p>
+</div>
+<h1 id="teslim-kontrol-listesi">Teslim Kontrol Listesi</h1>
+<ul>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+MEBİS’e <strong>yalnızca bu raporun PDF’ini</strong> yükleyeceğim. ZIP
+ve HTML dosyası yüklemeyeceğim.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+PDF dosya adı <code>86240069_HediyeNurDemir_vize.pdf</code>
+biçiminde.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Kapaktaki GitHub ve YouTube bağlantıları doğru; PDF’te tıklayıp
+denedim.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+GitHub deposunda web sayfası (tek <code>.html</code>), rapor PDF’i,
+<code>.tex</code> kaynakları ve <code>README.md</code> var.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+GitHub deposu <strong>herkese açık</strong> (ya da öğretim üyesine
+erişim verdim).</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Çalışımın son hâli teslim saatinden <strong>önce</strong> depoya
+gönderildi.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Sayfa içsel CSS ve içsel JavaScript kullanıyor, harici dosya
+gerektirmiyor.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Hazır taslak kullanmadım; yapay zekâ kullandıysam Bölüm 5’i
+doldurdum.</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊠</mi><annotation encoding="application/x-tex">\boxtimes</annotation></semantics></math>
+Çalışmanın mantığını sunumda anlatabilirim.</p></li>
+</ul>
+</body>
+</html>
